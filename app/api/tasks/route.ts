@@ -8,13 +8,14 @@ export async function GET() {
         });
 
         return NextResponse.json(tasks);
-    } catch (error) {
-        console.error("FETCH TASKS ERROR:", error);
+        } catch (error) {
+    console.error("FETCH TASKS ERROR:", error);
+    console.error("DATABASE URL EXISTS:", !!process.env.DATABASE_URL);
 
-        return NextResponse.json(
+    return NextResponse.json(
         { message: "Failed to fetch tasks" },
         { status: 500 }
-        );
+    );
     }
 }
 
