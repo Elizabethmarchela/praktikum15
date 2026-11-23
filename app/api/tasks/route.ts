@@ -4,13 +4,13 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
     try {
         const tasks = await prisma.task.findMany({
-        orderBy: {
-            createdAt: "desc",
-        },
+        orderBy: { createdAt: "desc" },
         });
 
         return NextResponse.json(tasks);
-    } catch {
+    } catch (error) {
+        console.error("FETCH TASKS ERROR:", error);
+
         return NextResponse.json(
         { message: "Failed to fetch tasks" },
         { status: 500 }
